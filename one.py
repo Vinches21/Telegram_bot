@@ -1,2 +1,4 @@
 print("Hello")
-oops
+class People:
+  age: int
+  name: str
