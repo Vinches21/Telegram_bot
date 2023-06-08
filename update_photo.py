@@ -1,10 +1,10 @@
 import requests
 import time
-
+from token_api import API_TOKEN
 
 API_URL: str = 'https://api.telegram.org/bot'
 API_CATS_URL: str = 'https://api.thecatapi.com/v1/images/search'
-BOT_TOKEN: str = '5436986592:AAG-6-QBXwMZWuhElLjdUpM2D509bg4oWqk'
+BOT_TOKEN: str = API_TOKEN
 ERROR_TEXT: str = 'Здесь должна была быть картинка с котиком :('
 TEXT: str = "Cool!!!"
 
