@@ -1,9 +1,12 @@
-import random
+import random, requests
 
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import Text, Command
 from token_api import API_TOKEN
+
+API_URL: str = 'https://api.telegram.org/bot'
+API_CATS_URL: str = 'https://api.thecatapi.com/v1/images/search'
 
 
 # Вместо BOT TOKEN HERE нужно вставить токен вашего бота,
@@ -28,6 +31,14 @@ user: dict = {'in_game': False,
 # Функция возвращающая случайное целое число от 1 до 100
 def get_random_number() -> int:
     return random.randint(1, 100)
+
+
+#Отправляет пользователю картинку кота)
+def send_cat_link(message):
+    chat_id = message.chat.id
+    cat_response = requests.get(API_CATS_URL)
+    cat_link = cat_response.json()[0]['url']
+    requests.get(f'{API_URL}{BOT_TOKEN}/sendPhoto?chat_id={chat_id}&photo={cat_link}')
 
 
 # Этот хэндлер будет срабатывать на команду "/start"
@@ -106,9 +117,12 @@ async def process_numbers_answer(message: Message):
             user['wins'] += 1
         elif int(message.text) > user['secret_number']:
             await message.answer('Мое число меньше')
+            send_cat_link(message)
+            print(message.json(indent=4))
             user['attempts'] -= 1
         elif int(message.text) < user['secret_number']:
             await message.answer('Мое число больше')
+            send_cat_link(message)
             user['attempts'] -= 1
 
         if user['attempts'] == 0:
@@ -131,6 +145,12 @@ async def process_other_text_answers(message: Message):
     else:
         await message.answer('Я довольно ограниченный бот, давайте '
                              'просто сыграем в игру?')
+
+def send_cat_link(message):
+    chat_id = message.chat.id
+    cat_response = requests.get(API_CATS_URL)
+    cat_link = cat_response.json()[0]['url']
+    requests.get(f'{API_URL}{BOT_TOKEN}/sendPhoto?chat_id={chat_id}&photo={cat_link}')
 
 
 if __name__ == '__main__':
