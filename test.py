@@ -12,20 +12,23 @@
 # print(users[1])
 # print(len(users))
 
-some_list = [7, 14, 28, 32, 32, "56"]
 
-def custom_filter(some_list):
-    res = 0
-    for i in some_list:
-        if type(i) != "<class 'int'>":
-            continue
-        if i % 7 == 0:
-            res += i
-    if res > 83:
-        return False
-    else:
-        return True
 
-print(custom_filter(some_list))
+
+# res = lambda x: x.lower().count("я") >= 23
+#
+#
+# print(res("Я - последняя буква в алфавите!"))
+
+
+
+def anonymous_filter(string):
+    return (lambda x: x.lower().count("я")) >= 23
+
+    # count_russian_letters = lambda s: sum([1 for char in s if char.isalpha() and char.lower() == "я"])
+    # return count_russian_letters(string) >= 23
+
+
+print(anonymous_filter('яяяяяяяяяяяяяяяяяяяяяяяя, яяяяяяяяяяяяяяяя и яяяяяяяя тоже!'))
 
 
