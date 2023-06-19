@@ -12,17 +12,20 @@
 # print(users[1])
 # print(len(users))
 
-some_list = [7, 14, 28, 32, 32, '56']
+some_list = [7, 14, 28, 32, 32, "56"]
 
 def custom_filter(some_list):
     res = 0
     for i in some_list:
-        if i % 7 == 0 and i.isdigit():
+        if type(i) != "<class 'int'>":
+            continue
+        if i % 7 == 0:
             res += i
     if res > 83:
         return False
     else:
         return True
 
-
 print(custom_filter(some_list))
+
+
