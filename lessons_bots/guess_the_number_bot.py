@@ -1,6 +1,6 @@
 import random, requests
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from aiogram.filters import Text, Command
 from token_api import API_TOKEN
@@ -95,7 +95,8 @@ async def process_positive_answer(message: Message):
 
 
 # Этот хэндлер будет срабатывать на отказ пользователя сыграть в игру
-@dp.message(Text(text=['Нет', 'Не', 'Не хочу', 'Не буду'], ignore_case=True))
+# @dp.message(Text(text=['Нет', 'Не', 'Не хочу', 'Не буду'], ignore_case=True))
+@dp.message(F.text.upper().in_({'НЕТ', 'НЕ', 'НЕ ХОЧУ', 'НЕ БУДУ'}))
 async def process_negative_answer(message: Message):
     if not user['in_game']:
         await message.answer('Жаль :(\n\nЕсли захотите поиграть - просто '
