@@ -1,6 +1,6 @@
 import random, requests
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from aiogram.filters import Text, Command
 from token_api import API_TOKEN
@@ -151,6 +151,9 @@ async def process_other_text_answers(message: Message):
     else:
         await message.answer('Я довольно ограниченный бот, давайте '
                              'просто сыграем в игру?')
+
+
+
 
 
 if __name__ == '__main__':
