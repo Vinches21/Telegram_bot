@@ -59,7 +59,7 @@ async def send_document(message: Message):
 # Этот хэндлер будет срабатывать на любые ваши текстовые сообщения,
 # кроме команд "/start" и "/help"
 async def send_echo(message: Message):
-    print(message.json)
+    print(message.json(indent=4))
     name = message.chat.first_name
     await message.answer(text=f"{message.text}, {name}")
 
