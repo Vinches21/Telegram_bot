@@ -11,5 +11,7 @@ async def set_main_menu(bot: Bot):
                                 description=description
                           ) for command,
                                 description in LEXICON_COMMANDS_RU.items()]
-    print(main_menu_commands)
+
+
+
     await bot.set_my_commands(main_menu_commands)

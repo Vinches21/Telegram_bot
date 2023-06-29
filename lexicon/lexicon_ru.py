@@ -27,7 +27,7 @@ LEXICON_RU: dict[str, str] = {
 
 
 LEXICON_COMMANDS_RU: dict[str, str] = {
-                '/start': 'Стартуем!!!',
+                '/start': 'Стартуем !!!',
                 '/help': 'Поддержка',
                 '/cancel': 'Отмена',
                 '/payment': 'Оплата'}
