@@ -6,6 +6,7 @@ from config_data.config import Config, load_config
 from aiogram.filters import CommandStart, Text
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from keyboards.inline_button_generator import create_inline_kb
+from keyboards.keyboards import game_kb
 
 # Загружаем конфиг в переменную config
 config: Config = load_config()
@@ -27,6 +28,7 @@ async def process_start_command(message: Message):
 
     await message.answer(text='Вот такая получается клавиатура',
                          reply_markup=keyboard)
+
 
 if __name__ == '__main__':
     dp.run_polling(bot)
