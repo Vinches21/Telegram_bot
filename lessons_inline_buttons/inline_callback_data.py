@@ -23,6 +23,14 @@ big_button_2: InlineKeyboardButton = InlineKeyboardButton(
     text='БОЛЬШАЯ КНОПКА 2',
     callback_data='big_button_2_pressed')
 
+button_test: InlineKeyboardButton = InlineKeyboardButton(
+    text="Test test test",
+    callback_data="test button")
+
+keyboard_test: InlineKeyboardMarkup = InlineKeyboardMarkup(
+    inline_keyboard=[[button_test]]
+)
+
 # Создаем объект инлайн-клавиатуры
 keyboard: InlineKeyboardMarkup = InlineKeyboardMarkup(
     inline_keyboard=[[big_button_1],
@@ -35,7 +43,7 @@ keyboard: InlineKeyboardMarkup = InlineKeyboardMarkup(
 async def process_start_command(message: Message):
     await message.answer(text='Это инлайн-кнопки. Нажми на любую!',
                          reply_markup=keyboard)
-    print(message.json(indent=4))
+
 
 
 # Этот хэндлер будет срабатывать на апдейт типа CallbackQuery
@@ -44,9 +52,9 @@ async def process_start_command(message: Message):
 async def process_button_1_press(callback: CallbackQuery):
     if callback.message.text != 'Была нажата БОЛЬШАЯ КНОПКА 1':
         await callback.message.edit_text(
-            text='Была нажата БОЛЬШАЯ КНОПКА 1',
-            reply_markup=callback.message.reply_markup)
-    await callback.answer()
+                text='Была нажата БОЛЬШАЯ КНОПКА 1',
+                reply_markup=callback.message.reply_markup)
+    await callback.answer(text='Ура! Нажата кнопка 1', show_alert=True)
 
 
 # Этот хэндлер будет срабатывать на апдейт типа CallbackQuery
